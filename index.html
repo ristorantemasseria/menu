@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <title>MAsseria Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+          <v-toolbar color="grey darken-1" dark>
+            <v-toolbar-title>
+              <v-img src="masseria_small.png" height="64" contain></v-img>
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-menu bottom left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="attrs" v-on="on">
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <template v-for="(menu_item, i) in menu_items">
+                  <v-list-item
+                    v-if="menu_item.title"
+                    :key="i"
+                    @click="">
+                    <v-list-item-avatar>
+                      <v-icon v-text="menu_item.icon"></v-icon>
+                    </v-list-item-avatar>
+                    <v-list-item-title
+                      v-text="menu_item.title">
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-divider
+                    v-else
+                    :key="i"></v-divider>
+                </template>
+              </v-list>
+            </v-menu>
+          </v-toolbar>
+
+          <h2 class="text-center" style="font-family: 'Great Vibes', cursive; font-size: 40px;">
+            <v-icon>mdi-glass-wine</v-icon>
+            {{title}}
+          </h2>
+      
+          <v-list three-line subheader
+            v-for="item in items"
+            :key="item.title">
+            <v-divider></v-divider>
+            <v-subheader style="font-family: 'Great Vibes', cursive; font-size: 30px;">{{item.title}} - {{item.subtitle}}</v-subheader>
+            <v-divider></v-divider>
+            <v-list-item
+              v-for="product in item.products"
+              :key="product.title"
+              @click="" >
+              <v-list-item-avatar>
+                <v-icon>mdi-glass-wine</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title v-text="product.title"></v-list-item-title>
+                <v-list-item-subtitle v-text="product.line1"  style="font-family: 'Great Vibes', cursive; font-size: 20px;"></v-list-item-subtitle>
+                <v-list-item-subtitle v-text="product.line2"  style="font-family: 'Great Vibes', cursive; font-size: 20px;"></v-list-item-subtitle>
+              </v-list-item-content>
+              <v-list-item-action class="red--text"  style="font-family: 'Great Vibes', cursive; font-size: 20px;" v-text="product.price"></v-list-item-action>
+            </v-list-item>
+          </v-list>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        menu_items: [
+          {
+            icon: "mdi-food-variant",
+            title: "Antipasti"
+          },
+          {
+            icon: "mdi-pasta",
+            title: "Primi"
+          },
+          {
+            icon: "mdi-silverware-fork-knife",
+            title: "Secondi"
+          },
+          {
+            icon: "mdi-cupcake",
+            title: "Dolci"
+          },
+          {},
+          {
+            icon: "mdi-glass-wine",
+            title: "Vini"
+          }
+        ],
+        title: "Vini",
+        items: [
+          {
+            title: "Puglia",
+            subtitle: "Vini Bianchi",
+            products: [
+              {
+                title: "ROYCELLO IGT",
+                line1: "Az. Agr. Tormaresca",
+                line2: "Fiano 100% - 13% vol.",
+                price : "15.00€"
+              },
+              {
+                title: "BOLINA IGT",
+                line1: "Rosa del Golfo di Caro Alerio (LE)",
+                line2: "Vendeca 80% Chardonnay 20% - 1.5% vol.",
+                price : "15.00€"
+              },
+              {
+                title: "TORMARESCA IGT",
+                line1: "Tormaresca",
+                line2: "Chardonnay 100% - 8gg barriques - 13% vol.",
+                price : "15.00€"
+              },
+              {
+                title: "PIETRA BIANCA DOC",
+                line1: "Temarrica Antinori Brindisi",
+                line2: "Chardonnay 80% Fiano 20% - 11 mesi barriques - 13% vol.",
+                price : "20.00€"
+              },
+              {
+                title: "EDDA",
+                line1: "Cantina San Marzano",
+                line2: "Chardonnay muschiato selvatico e Fiano - 14% vol.",
+                price : "20.00€"
+              },
+              {
+                title: "TIMO",
+                line1: "San Marzano",
+                line2: "Vermentino 100%",
+                price : "15.00€"
+              },
+            ],
+          },
+          {
+            title: "Umbria",
+            subtitle: "Vini Bianchi",
+            products: [
+              {
+                title: "CERVARO DELLA SALA",
+                line1: "Castello della Sala",
+                line2: "Chardonnay 80% Grechetto 20% - 11% vol.",
+                price : "60.00€"
+              },
+            ]
+          }
+        ],
+      },
+    })
+  </script>
+</body>
+</html>
