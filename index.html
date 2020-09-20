@@ -7,18 +7,35 @@
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <title>Masseria Menu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style> 
+    [v-cloak] { 
+        display: none; 
+    }
+    .cursive {
+      font-family: 'Great Vibes', cursive !important;
+    }
+    .small {
+      font-size: 1.2rem;
+    }
+    .medium {
+      font-size: 1.5rem;
+    }
+    .big {
+      font-size: 2rem;
+    }
+  </style> 
 </head>
 <body>
   <div id="app">
     <v-app>
       <v-main>
-        <v-container>
+        <v-container v-cloak>
           <v-toolbar color="grey darken-1" dark>
             <v-toolbar-title>
-              <v-img src="masseria_small.png" height="64" contain></v-img>
+              <v-img src="masseria_small.png" contain height="55px"></v-img>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-menu bottom left>
+            <v-menu bottom left open-on-hover>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
                   <v-icon>mdi-dots-vertical</v-icon>
@@ -45,30 +62,48 @@
             </v-menu>
           </v-toolbar>
 
-          <h2 class="text-center" style="font-family: 'Great Vibes', cursive; font-size: 40px;">
+          <h2 class="text-center cursive big">
             <v-icon>mdi-glass-wine</v-icon>
             {{title}}
           </h2>
-      
+
+          <v-dialog
+            v-model="dialog"
+            width="500" >
+            <v-card>
+              <v-card-title class="headline grey lighten-2" >
+                <v-icon>mdi-glass-wine</v-icon>
+                {{dialog_product.title}}
+              </v-card-title>
+              <v-img :src="dialog_product.image"></v-img>
+              <v-divider></v-divider>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="dialog = false">
+                  OK
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          
           <v-list three-line subheader
             v-for="item in items"
             :key="item.title">
             <v-divider></v-divider>
-            <v-subheader style="font-family: 'Great Vibes', cursive; font-size: 30px;">{{item.title}} - {{item.subtitle}}</v-subheader>
+            <v-subheader class="cursive medium">{{item.title}} - {{item.subtitle}}</v-subheader>
             <v-divider></v-divider>
             <v-list-item
               v-for="product in item.products"
-              :key="product.title"
-              @click="" >
+              :key="product.title">
               <v-list-item-avatar>
-                <v-icon>mdi-glass-wine</v-icon>
+                <v-icon @click="openDialog(product)">mdi-glass-wine</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title v-text="product.title"></v-list-item-title>
-                <v-list-item-subtitle v-text="product.line1"  style="font-family: 'Great Vibes', cursive; font-size: 20px;"></v-list-item-subtitle>
-                <v-list-item-subtitle v-text="product.line2"  style="font-family: 'Great Vibes', cursive; font-size: 20px;"></v-list-item-subtitle>
+                <v-list-item-subtitle class="cursive small" v-text="product.line1"></v-list-item-subtitle>
+                <v-list-item-subtitle class="cursive small" v-text="product.line2"></v-list-item-subtitle>
               </v-list-item-content>
-              <v-list-item-action class="red--text"  style="font-family: 'Great Vibes', cursive; font-size: 20px;" v-text="product.price"></v-list-item-action>
+              <v-list-item-action class="red--text" class="cursive small" v-text="product.price"></v-list-item-action>
             </v-list-item>
           </v-list>
         </v-container>
@@ -82,6 +117,12 @@
     new Vue({
       el: '#app',
       vuetify: new Vuetify(),
+      methods: {
+        openDialog(product) {
+          this.dialog_product = product;
+          this.dialog = true;
+        }
+      },
       data: {
         menu_items: [
           {
@@ -107,6 +148,8 @@
           }
         ],
         title: "Vini",
+        dialog: false,
+        dialog_product: {},
         items: [
           {
             title: "Puglia",
@@ -116,37 +159,43 @@
                 title: "ROYCELLO IGT",
                 line1: "Az. Agr. Tormaresca",
                 line2: "Fiano 100% - 13% vol.",
-                price : "15.00€"
+                price: "15.00€",
+                image: "wines/wine1.jpg"
               },
               {
                 title: "BOLINA IGT",
                 line1: "Rosa del Golfo di Caro Alerio (LE)",
                 line2: "Vendeca 80% Chardonnay 20% - 1.5% vol.",
-                price : "15.00€"
+                price: "15.00€",
+                image: "wines/wine1.jpg"
               },
               {
                 title: "TORMARESCA IGT",
                 line1: "Tormaresca",
                 line2: "Chardonnay 100% - 8gg barriques - 13% vol.",
-                price : "15.00€"
+                price: "15.00€",
+                image: "wines/wine1.jpg"
               },
               {
                 title: "PIETRA BIANCA DOC",
                 line1: "Temarrica Antinori Brindisi",
                 line2: "Chardonnay 80% Fiano 20% - 11 mesi barriques - 13% vol.",
-                price : "20.00€"
+                price: "20.00€",
+                image: "wines/wine1.jpg"
               },
               {
                 title: "EDDA",
                 line1: "Cantina San Marzano",
                 line2: "Chardonnay muschiato selvatico e Fiano - 14% vol.",
-                price : "20.00€"
+                price: "20.00€",
+                image: "wines/wine1.jpg"
               },
               {
                 title: "TIMO",
                 line1: "San Marzano",
                 line2: "Vermentino 100%",
-                price : "15.00€"
+                price: "15.00€",
+                image: "wines/wine1.jpg"
               },
             ],
           },
@@ -158,7 +207,8 @@
                 title: "CERVARO DELLA SALA",
                 line1: "Castello della Sala",
                 line2: "Chardonnay 80% Grechetto 20% - 11% vol.",
-                price : "60.00€"
+                price: "60.00€",
+                image: "wines/wine1.jpg"
               },
             ]
           }
