@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-  <title>Masseria Menu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <style> 
-    [v-cloak] { 
-        display: none; 
-    }
-    .cursive {
-      font-family: 'Great Vibes', cursive !important;
-    }
-    .small {
-      font-size: 1.2rem;
-    }
-    .medium {
-      font-size: 1.5rem;
-    }
-    .big {
-      font-size: 2rem;
-    }
-  </style> 
-</head>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <title>Masseria Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <style> 
+      [v-cloak] { 
+          display: none; 
+      }
+      .logo {
+        height: 55px;
+      }
+      .cursive {
+        font-family: 'Great Vibes', cursive !important;
+      }
+      .small {
+        font-size: 1.2rem;
+      }
+      .medium {
+        font-size: 1.5rem;
+      }
+      .text-top {
+        vertical-align: text-top !important;
+      }
+      .big {
+        font-size: 2rem;
+      }
+      .dialog_product {
+        width: 500px;
+      }
+    </style>
+  </head> 
 <body>
   <div id="app">
     <v-app>
@@ -32,10 +41,10 @@
         <v-container v-cloak>
           <v-toolbar color="grey darken-1" dark>
             <v-toolbar-title>
-              <v-img src="masseria_small.png" contain height="55px"></v-img>
+              <v-img src="masseria_small.png" contain class="logo"></v-img>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-menu bottom left open-on-hover>
+            <v-menu left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
                   <v-icon>mdi-dots-vertical</v-icon>
@@ -43,63 +52,72 @@
               </template>
               <v-list>
                 <template v-for="(menu_item, i) in menu_items">
-                  <v-list-item
-                    v-if="menu_item.title"
-                    :key="i"
-                    @click="">
+                  <v-list-item v-if="menu_item.title" :key="i" @click="menuSelect(menu_item)">
                     <v-list-item-avatar>
                       <v-icon v-text="menu_item.icon"></v-icon>
                     </v-list-item-avatar>
-                    <v-list-item-title
-                      v-text="menu_item.title">
-                    </v-list-item-title>
+                    <v-list-item-title v-text="menu_item.title"></v-list-item-title>
                   </v-list-item>
-                  <v-divider
-                    v-else
-                    :key="i"></v-divider>
+                  <v-divider v-else :key="i"></v-divider>
                 </template>
               </v-list>
             </v-menu>
           </v-toolbar>
+          
+          <v-form method="POST" class="kwes-form" action="https://kwes.io/api/foreign/forms/qJKAWkeKSRU6uvXwaLFQ" lang="it" ref="form" v-model="valid" lazy-validation>
+            <v-card class="mx-auto blue-grey" elevation="2" shaped dark>
+              <v-card-title>
+                <v-icon>mdi-whatsapp</v-icon>Whatsapp
+              </v-card-title>
+              <v-card-subtitle class="pb-0">
+                Ricevi informazioni sui nostri menu
+              </v-card-subtitle>
+              <v-card-text class="py-0">
+                <v-row>
+                  <v-col sm="6" cols="12" class="py-0">
+                    <v-text-field name="name" v-model="name" :counter="40" :rules="contact.nameRules" label="👤 Nome"></v-text-field>
+                  </v-col>
+                  <v-col sm="6" cols="12" class="py-0">
+                    <v-text-field name="phone" v-model="phone" type="tel" :rules="contact.phoneRules" label="📞 Telefono"></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn :disabled="!valid" color="success" type="submit">Iscriviti</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-form>
 
           <h2 class="text-center cursive big">
-            <v-icon>mdi-glass-wine</v-icon>
-            {{title}}
+            <v-icon class="text-top" large>{{icon}}</v-icon>{{title}}
           </h2>
 
-          <v-dialog
-            v-model="dialog"
-            width="500" >
+          <v-dialog v-model="dialog" class="dialog_product">
             <v-card>
               <v-card-title class="headline grey lighten-2" >
-                <v-icon>mdi-glass-wine</v-icon>
-                {{dialog_product.title}}
+                <v-icon>{{icon}}</v-icon>{{dialog_product.title}}
               </v-card-title>
               <v-img :src="dialog_product.image"></v-img>
               <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="dialog = false">
-                  OK
-                </v-btn>
+                <v-btn color="primary" text @click="dialog = false">OK</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
           
-          <v-list three-line subheader
-            v-for="item in items"
-            :key="item.title">
+          <v-list three-line subheader v-for="item in items" :key="item.title">
             <v-divider></v-divider>
-            <v-subheader class="cursive medium">{{item.title}} - {{item.subtitle}}</v-subheader>
-            <v-divider></v-divider>
-            <v-list-item
-              v-for="product in item.products"
-              :key="product.title">
-              <v-list-item-avatar>
-                <v-icon @click="openDialog(product)">mdi-glass-wine</v-icon>
+            <template v-if="item.title || item.subtitle">
+              <v-subheader class="cursive medium" v-text="[item.title, item.subtitle].filter(x => typeof x === 'string' && x.length > 0).join(' - ')"></v-subheader>
+              <v-divider></v-divider>
+            </template>
+            <v-list-item v-for="product in item.products" :key="product.title">
+              <v-list-item-avatar class="mt-1">
+                <v-icon @click="openDialog(product)">{{icon}}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title v-text="product.title"></v-list-item-title>
+                <v-list-item-title class="text-uppercase" v-text="product.title"></v-list-item-title>
                 <v-list-item-subtitle class="cursive small" v-text="product.line1"></v-list-item-subtitle>
                 <v-list-item-subtitle class="cursive small" v-text="product.line2"></v-list-item-subtitle>
               </v-list-item-content>
@@ -113,108 +131,90 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.js"></script>
+  <script src="appetizers.js"></script>
+  <script src="pasta.js"></script>
+  <script src="main_courses.js"></script>
+  <script src="cheese.js"></script>
+  <script src="cakes.js"></script>
+  <script src="wines.js"></script>
+  <script src="coffee.js"></script>
   <script>
+    var menu_items =  [
+      {
+        icon: "mdi-food-variant",
+        title: "Antipasti",
+        items: appetizers
+      },
+      {
+        icon: "mdi-pasta",
+        title: "Primi",
+        items: pasta
+      },
+      {
+        icon: "mdi-silverware-fork-knife",
+        title: "Secondi",
+        items: main_courses
+      },
+      {
+        icon: "mdi-cheese",
+        title: "Formaggi",
+        items: cheese
+      },
+      {
+        icon: "mdi-cupcake",
+        title: "Dolci",
+        items: cakes
+      },
+      {
+        icon: "mdi-glass-wine",
+        title: "Vini",
+        items: wines
+      },
+      {
+        icon: "mdi-coffee",
+        title: "Caffetteria",
+        items: coffee
+      },
+    ];
+
     new Vue({
       el: '#app',
       vuetify: new Vuetify(),
       methods: {
+        menuSelect(menu_item) {
+          this.icon = menu_item.icon,
+          this.title = menu_item.title,
+          this.items = menu_item.items
+        },
         openDialog(product) {
           this.dialog_product = product;
           this.dialog = true;
         }
       },
       data: {
-        menu_items: [
-          {
-            icon: "mdi-food-variant",
-            title: "Antipasti"
-          },
-          {
-            icon: "mdi-pasta",
-            title: "Primi"
-          },
-          {
-            icon: "mdi-silverware-fork-knife",
-            title: "Secondi"
-          },
-          {
-            icon: "mdi-cupcake",
-            title: "Dolci"
-          },
-          {},
-          {
-            icon: "mdi-glass-wine",
-            title: "Vini"
-          }
-        ],
-        title: "Vini",
+        valid: true,
+        name: '',
+        phone: '',
+        contact: {
+          nameRules: [
+            v => !!v || 'Campo obbligatorio',
+            v => (v && v.length <= 40) || 'Troppo lungo',
+          ],
+          phoneRules: [
+            v => !!v || 'Campo obbligatorio',
+            v => /^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$/.test(v) || 'Telefono non valido',
+          ]
+        },
+        menu_items: menu_items,
+        items: menu_items[5].items,
+        title: menu_items[5].title,
+        icon: menu_items[5].icon,
         dialog: false,
         dialog_product: {},
-        items: [
-          {
-            title: "Puglia",
-            subtitle: "Vini Bianchi",
-            products: [
-              {
-                title: "ROYCELLO IGT",
-                line1: "Az. Agr. Tormaresca",
-                line2: "Fiano 100% - 13% vol.",
-                price: "15.00€",
-                image: "wines/wine1.jpg"
-              },
-              {
-                title: "BOLINA IGT",
-                line1: "Rosa del Golfo di Caro Alerio (LE)",
-                line2: "Vendeca 80% Chardonnay 20% - 1.5% vol.",
-                price: "15.00€",
-                image: "wines/wine1.jpg"
-              },
-              {
-                title: "TORMARESCA IGT",
-                line1: "Tormaresca",
-                line2: "Chardonnay 100% - 8gg barriques - 13% vol.",
-                price: "15.00€",
-                image: "wines/wine1.jpg"
-              },
-              {
-                title: "PIETRA BIANCA DOC",
-                line1: "Temarrica Antinori Brindisi",
-                line2: "Chardonnay 80% Fiano 20% - 11 mesi barriques - 13% vol.",
-                price: "20.00€",
-                image: "wines/wine1.jpg"
-              },
-              {
-                title: "EDDA",
-                line1: "Cantina San Marzano",
-                line2: "Chardonnay muschiato selvatico e Fiano - 14% vol.",
-                price: "20.00€",
-                image: "wines/wine1.jpg"
-              },
-              {
-                title: "TIMO",
-                line1: "San Marzano",
-                line2: "Vermentino 100%",
-                price: "15.00€",
-                image: "wines/wine1.jpg"
-              },
-            ],
-          },
-          {
-            title: "Umbria",
-            subtitle: "Vini Bianchi",
-            products: [
-              {
-                title: "CERVARO DELLA SALA",
-                line1: "Castello della Sala",
-                line2: "Chardonnay 80% Grechetto 20% - 11% vol.",
-                price: "60.00€",
-                image: "wines/wine1.jpg"
-              },
-            ]
-          }
-        ],
+        
       },
-    })
+    });
   </script>
+  <script src="https://kwes.io/v2/kwes-script.js" charset="utf-8"></script>
 </body>
 </html>
