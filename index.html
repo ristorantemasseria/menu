@@ -36,36 +36,42 @@
   </head> 
 <body>
   <div id="app">
-    <v-app>
-      <v-main>
-        <v-container v-cloak>
-          <v-toolbar color="grey darken-1" dark>
-            <v-toolbar-title>
-              <v-img src="masseria_small.png" contain class="logo"></v-img>
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-menu left>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <template v-for="(menu_item, i) in menu_items">
-                  <v-list-item v-if="menu_item.title" :key="i" @click="menuSelect(menu_item)">
-                    <v-list-item-avatar>
-                      <v-icon v-text="menu_item.icon"></v-icon>
-                    </v-list-item-avatar>
-                    <v-list-item-title v-text="menu_item.title"></v-list-item-title>
-                  </v-list-item>
-                  <v-divider v-else :key="i"></v-divider>
-                </template>
-              </v-list>
-            </v-menu>
-          </v-toolbar>
-          
+    <v-app v-cloak>
+
+      <v-app-bar app fixed color="grey darken-1" dark elevate-on-scroll src="sala_01.jpg">
+        <v-toolbar-title>
+          <v-img src="masseria_small.png" contain class="logo"></v-img>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-menu left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <template v-for="(menu_item, i) in menu_items">
+              <v-list-item v-if="menu_item.title" :key="i" @click="menuSelect(menu_item)">
+                <v-list-item-avatar>
+                  <v-icon v-text="menu_item.icon"></v-icon>
+                </v-list-item-avatar>
+                <v-list-item-title v-text="menu_item.title"></v-list-item-title>
+              </v-list-item>
+              <v-divider v-else :key="i"></v-divider>
+            </template>
+          </v-list>
+        </v-menu>
+      </v-app-bar>
+            
+      <v-container class="mt-16">
+        <v-dialog v-model="dialog_contact">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="teal lighten-2" dark v-bind="attrs" v-on="on">
+              <v-icon>mdi-whatsapp</v-icon>Iscriviti
+            </v-btn>
+          </template>
           <v-form method="POST" class="kwes-form" action="https://kwes.io/api/foreign/forms/qJKAWkeKSRU6uvXwaLFQ" lang="it" ref="form" v-model="valid" lazy-validation>
-            <v-card class="mx-auto blue-grey" elevation="2" shaped dark>
+            <v-card class="mx-auto blue-grey" dark>
               <v-card-title>
                 <v-icon>mdi-whatsapp</v-icon>Whatsapp
               </v-card-title>
@@ -83,49 +89,52 @@
                 </v-row>
               </v-card-text>
               <v-card-actions>
-                <v-btn :disabled="!valid" color="success" type="submit">Iscriviti</v-btn>
+                <v-btn :disabled="!valid" color="success" type="submit" @click="dialog_contact = false">Iscriviti</v-btn>
+                <v-btn dark color="grey" @click="dialog_contact = false">Annulla</v-btn>
               </v-card-actions>
             </v-card>
           </v-form>
+        </v-dialog>
 
-          <h2 class="text-center cursive big">
-            <v-icon class="text-top" large>{{icon}}</v-icon>{{title}}
-          </h2>
 
-          <v-dialog v-model="dialog" class="dialog_product">
-            <v-card>
-              <v-card-title class="headline grey lighten-2" >
-                <v-icon>{{icon}}</v-icon>{{dialog_product.title}}
-              </v-card-title>
-              <v-img :src="dialog_product.image"></v-img>
-              <v-divider></v-divider>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="dialog = false">OK</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-          
-          <v-list three-line subheader v-for="item in items" :key="item.title">
+        <h2 class="text-center cursive big">
+          <v-icon class="text-top" large>{{icon}}</v-icon>{{title}}
+        </h2>
+
+        <v-dialog v-model="dialog" class="dialog_product">
+          <v-card>
+            <v-card-title class="headline grey lighten-2" >
+              <v-icon>{{icon}}</v-icon>{{dialog_product.title}}
+            </v-card-title>
+            <v-img :src="dialog_product.image"></v-img>
             <v-divider></v-divider>
-            <template v-if="item.title || item.subtitle">
-              <v-subheader class="cursive medium" v-text="[item.title, item.subtitle].filter(x => typeof x === 'string' && x.length > 0).join(' - ')"></v-subheader>
-              <v-divider></v-divider>
-            </template>
-            <v-list-item v-for="product in item.products" :key="product.title">
-              <v-list-item-avatar class="mt-1">
-                <v-icon @click="openDialog(product)">{{icon}}</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title class="text-uppercase" v-text="product.title"></v-list-item-title>
-                <v-list-item-subtitle class="cursive small" v-text="product.line1"></v-list-item-subtitle>
-                <v-list-item-subtitle class="cursive small" v-text="product.line2"></v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action class="red--text cursive small" v-text="product.price"></v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-container>
-      </v-main>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="dialog = false">OK</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        
+        <v-list three-line subheader v-for="item in items" :key="item.title">
+          <v-divider></v-divider>
+          <template v-if="item.title || item.subtitle">
+            <v-subheader class="cursive medium" v-text="[item.title, item.subtitle].filter(x => typeof x === 'string' && x.length > 0).join(' - ')"></v-subheader>
+            <v-divider></v-divider>
+          </template>
+          <v-list-item v-for="product in item.products" :key="product.title">
+            <v-list-item-avatar class="mt-1">
+              <v-icon @click="openDialog(product)">{{icon}}</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="text-uppercase" v-text="product.title"></v-list-item-title>
+              <v-list-item-subtitle class="cursive small" v-text="product.line1"></v-list-item-subtitle>
+              <v-list-item-subtitle class="cursive small" v-text="product.line2"></v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-action class="red--text cursive small" v-text="product.price"></v-list-item-action>
+          </v-list-item>
+        </v-list>
+        </span>
+      </v-container>
     </v-app>
   </div>
 
@@ -211,8 +220,15 @@
         icon: menu_items[5].icon,
         dialog: false,
         dialog_product: {},
-        
+        dialog_contact: false
       },
+      watch: {
+        dialog_contact: (open) => {
+          if(open) {
+            setTimeout(() => { kwesFormsInitialize();}, 0);  
+          }
+        }
+      }
     });
   </script>
   <script src="https://kwes.io/v2/kwes-script.js" charset="utf-8"></script>
