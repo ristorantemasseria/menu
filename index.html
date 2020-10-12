@@ -70,7 +70,7 @@
               <v-icon>mdi-whatsapp</v-icon>Iscriviti
             </v-btn>
           </template>
-          <v-form method="POST" class="kwes-form" action="https://kwes.io/api/foreign/forms/qJKAWkeKSRU6uvXwaLFQ" lang="it" ref="form" v-model="valid" lazy-validation>
+          <v-form method="POST" class="kwes-form" action="https://kwes.io/api/foreign/forms/qJKAWkeKSRU6uvXwaLFQ" lang="it" ref="form" v-model="valid">
             <v-card class="mx-auto blue-grey" dark>
               <v-card-title>
                 <v-icon>mdi-whatsapp</v-icon>Whatsapp
@@ -224,9 +224,17 @@
       },
       watch: {
         dialog_contact: (open) => {
-          if(open) {
-            setTimeout(() => { kwesFormsInitialize();}, 0);  
-          }
+          if(open)
+            setTimeout(() => {
+              var observer = new MutationObserver(() => {
+                try {
+                  document.querySelector("a[href='https://kwes.io']").parentElement.remove();
+                  observer.disconnect();
+                } catch (error) {};
+              });
+              observer.observe(document.querySelector("form.kwes-form"), { childList: true });
+              kwesFormsInitialize();
+            }, 0);
         }
       }
     });
