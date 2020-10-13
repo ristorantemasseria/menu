@@ -39,6 +39,9 @@
     <v-app v-cloak>
 
       <v-app-bar app fixed color="grey darken-1" dark elevate-on-scroll src="sala_01.jpg">
+        <template v-slot:img="{ props }">
+          <v-img v-bind="props" gradient="to top right, rgba(110,105,81,.7), rgba(97,89,89,.7)"></v-img>
+        </template>
         <v-toolbar-title>
           <v-img src="masseria_small.png" contain class="logo"></v-img>
         </v-toolbar-title>
@@ -66,8 +69,10 @@
       <v-container class="mt-16">
         <v-dialog v-model="dialog_contact">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="teal lighten-2" dark v-bind="attrs" v-on="on">
-              <v-icon>mdi-whatsapp</v-icon>Iscriviti
+            <v-btn color="teal lighten-2" :dark="!submitted" v-bind="attrs" v-on="on" :disabled="submitted">
+              <v-icon>mdi-whatsapp</v-icon>
+              <template v-if="submitted">Iscritto!</template>
+              <template v-else>Iscriviti</template>
             </v-btn>
           </template>
           <v-form method="POST" class="kwes-form" action="https://kwes.io/api/foreign/forms/qJKAWkeKSRU6uvXwaLFQ" lang="it" ref="form" v-model="valid">
@@ -89,7 +94,7 @@
                 </v-row>
               </v-card-text>
               <v-card-actions>
-                <v-btn :disabled="!valid" color="success" type="submit" @click="dialog_contact = false">Iscriviti</v-btn>
+                <v-btn :disabled="!valid" color="success" type="submit" @click="dialog_contact = false, submitted = true">Iscriviti</v-btn>
                 <v-btn dark color="grey" @click="dialog_contact = false">Annulla</v-btn>
               </v-card-actions>
             </v-card>
@@ -202,6 +207,7 @@
       },
       data: {
         valid: true,
+        submitted: false,
         name: '',
         phone: '',
         contact: {
