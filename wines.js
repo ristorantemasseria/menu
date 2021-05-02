@@ -4,36 +4,46 @@ const wines = [
         subtitle: "Vini Bianchi",
         products: [
             {
-                title: "ROYCELLO IGT",
-                line1: "Az. Agr. Tormaresca",
-                line2: "Fiano 100% - 13% vol.",
-                price: "15.00€"
-            }, {
                 title: "BOLINA IGT",
                 line1: "Rosa del Golfo di Calo’ Alezio (LE)",
                 line2: "Verdeca 80%, Chardonnay 20%. - 1.5% vol.",
-                price: "15.00€"
+                price: "18.00€"
             }, {
                 title: "TORMARESCA IGT",
                 line1: "Tormaresca",
                 line2: "Chardonnay 100%. 8 gg barriques. - 13% vol.",
-                price: "15.00€"
+                price: "18.00€"
             }, {
                 title: "PIETRA BIANCA DOC",
                 line1: "Tormaresca Antinori Brindisi",
                 line2: "Chardonnay 80% Fiano 20%. 8 mesi barriques. - 13%vol.",
-                price: "20.00€"
+                price: "25.00€"
             }, {
                 title: "EDDA",
                 line1: "Cantina San Marzano",
                 line2: "Chardonnay, moscato selvatico e fiano - 14% vol. ",
-                price: "20.00€"
+                price: "25.00€"
             }, {
                 title: "TIMO",
                 line1: "San Marzano",
                 line2: "Vermentino 100%",
-                price: "15.00€"
-            },
+                price: "18.00€"
+            }, {
+                title: "SCAZZARIDDE",
+                line1: "Soc.Agr. Matteo Santoiemma (Ba)",
+                line2: "Verdeca e Minutolo",
+                price: "25.00€"
+            }, {
+                title: "CARPARO (Macerazione)",
+                line1: "Soc.Agr. Matteo Santoiemma (Ba)",
+                line2: "Minutolo",
+                price: "35.00€"
+            }, {
+                title: "FIANO di Bocca di Lupo", 
+                line1: "Tormaresca (Le)",
+                line2: "Fiano 100% Riserva",
+                price: "45.00€"
+            }
         ],
     }, {
         title: "Umbria",
@@ -54,7 +64,7 @@ const wines = [
                 title: "PROSECCO di Valdobbiadene DOCG",
                 line1: "Extra Dry",
                 line2: "Foss Marai",
-                price: "18.00€"
+                price: "20.00€"
             },
         ]
     }, {
@@ -65,7 +75,7 @@ const wines = [
                 title: "GEWURZTRAMIN ER. DOC",
                 line1: "Hofstatter",
                 line2: "Gewurztraminer 100% - 13,5% vol.",
-                price: "20.00€"
+                price: "25.00€"
             }, {
                 title: "KERNER",
                 line1: "Otmar Mair",
@@ -91,38 +101,48 @@ const wines = [
                 title: "ROSA del GOLFO IGT",
                 line1: "Rosa del Golfo di Calò Alezio (LE)",
                 line2: "Negroamaro 90%, Malvasia nera 10 - 12% vol.",
-                price: "15.00€"
+                price: "18.00€"
             }, {
                 title: "FIVE ROSES IGT Anniversario",
                 line1: "Az.Agr. Leone de Castris Salice Salentino(LE)",
                 line2: "Negroamaro in purezza. - 12% vol.",
-                price: "15.00€"
+                price: "18.00€"
             }, {
                 title: "CALAFURIA IGT",
                 line1: "Tormaresca Antinori (BR)",
                 line2: "Negroamaro 100% - 12%vol. Anno",
-                price: "15.00€"   
+                price: "18.00€"   
             }, {
                 title: "CALAFURIA IGT - Magnnum",
                 line1: "Tormaresca Antinori (BR)",
                 line2: "Negroamaro 100% - 12%vol. Anno",
                 price: "30.00€"
             }, {
+                title: "FURIA di CALAFURIA",
+                line1: "Tormaresca Antinori (BR)",
+                line2: "Negroamaro-Cabernet Franc.-Syrah-12,5% vol.",
+                price: "30.00€"
+            }, {
+                title: "FURIA di CALAFURIA - Magnnum",
+                line1: "Tormaresca Antinori (BR)",
+                line2: "Negroamaro-Cabernet Franc.-Syrah-12,5% vol.",
+                price: "60.00€"
+            }, {
                 title: "SUSUMANIELLO",
                 line1: "Az. Agricola Vallone",
                 line2: "Susumaniello 100% -13% vol.",
-                price: "15.00€"
-            }, {
-                title: "PRIMITIVO ATTANASIO",
-                line1: "Giuseppe Attanasio Manduria",
-                line2: "Primitivo 100% - 15,5° vol.",
-                price: "20.00€"
+                price: "18.00€"
             }, {
                 title: "TRAMARI",
                 line1: "San Marzano 100%",
                 line2: "Primitivo",
-                price: "15.00€"
-            }       
+                price: "18.00€"
+            }, {
+                title: "CORVELLO",
+                line1: "Soc.Agr. Matteo Santoiemma (Ba)",
+                line2: "Primitivo Rosé",
+                price: "30.00€"
+            }  
         ]
     }, {
         title: "Puglia",
@@ -132,7 +152,7 @@ const wines = [
                 title: "PORTULANO del SALENTO IGT",
                 line1: "Az. Agr. Rosa del Golfo Alezio (LE)",
                 line2: "Negroamaro e Malvasia nera. - 13.5%vol.",
-                price: "15.00€"
+                price: "20.00€"
             }, {
                 title: "SALICE SALENTINO Riserva 50 anni",
                 line1: "Az. Agr. L. de Castris Salice Salentino (LE)",
@@ -157,12 +177,12 @@ const wines = [
                 title: "“F” NEGROAMARO",
                 line1: "San Marzano",
                 line2: "Negroamaro 100% - 15% vol.",
-                price: "35.00€"
+                price: "40.00€"
             }, {
                 title: "PRIMITIVO di MANDURIA DOC - ATTANASIO",
                 line1: "Az. Agr. Attanasio Manduria",
                 line2: "Primitivo 100% - 16,5% vol.",
-                price: "35.00€"
+                price: "40.00€"
             }, {
                 title: "MASSERIA MAIME IGT",
                 line1: "Az. Agr. Tormaresca S.Pietro Vernotico(BR)",
@@ -172,12 +192,12 @@ const wines = [
                 title: "QUARANTALE Riserva Mino Calo’",
                 line1: "Rosa del Golfo di Calo’ Alezio (LE)",
                 line2: "13.5% vol.",
-                price: "25.00€"
+                price: "30.00€"
             }, {
                 title: "GRATICCIAIA",
                 line1: "Az. Agr. Vallone Copertino (LE)",
                 line2: "Negroamaro appassito, abboccato - 14,5 % vol.",
-                price: "100.00€"
+                price: "80.00€"
             }, {
                 title: "JADDICO DOC",
                 line1: "Tenute Rubino",
@@ -187,17 +207,17 @@ const wines = [
                 title: "NEGROAMARO DEL SALENTO IGT",
                 line1: "Az. Agr. Tormaresca",
                 line2: "Negroamaro - 13% vol.",
-                price: "15.00€"
+                price: "18.00€"
             }, {
                 title: "SESSANT’ANNI",
                 line1: "San Marzano, Taranto",
                 line2: "Primitivo 100% - 15 % vol.",
-                price: "35.00€"
+                price: "40.00€"
             }, {
                 title: "62 ANNIVERSARIO",
                 line1: "San Marzano, Taranto",
                 line2: "Primitivo 100% - 15 % vol.",
-                price: "45.00€"
+                price: "50.00€"
             }, {
                 title: "PER LUI PRIMITIVO",
                 line1: "Az. Agricola Leone De Castris",
@@ -212,7 +232,7 @@ const wines = [
                 title: "PRIMITIVO SALENTO IGT",
                 line1: "Az. Agr. Tormaresca",
                 line2: "Primitivo - 13% vol.",
-                price: "15.00€"
+                price: "18.00€"
             }, {
                 title: "TORCICODA",
                 line1: "Tormaresca Antinori Minervino Murge (BA)",
@@ -234,10 +254,25 @@ const wines = [
                 line2: "Primitivo 100% riserva - 15% vol.",
                 price: "50.00€"
             }, {
+                title: "I PARIETI",
+                line1: "Soc. Agr. Matteo Santoiemma (Ba)",
+                line2: "Primitivo",
+                price: "25.00€"
+            }, {
+                title: "TATARANNE",
+                line1: "Soc. Agr. Matteo Santoiemma (Ba)",
+                line2: "Primitivo",
+                price: "25.00€"
+            }, {
+                title: "CEPPI SPARSI",
+                line1: "Soc. Agr. Matteo Santoiemma (Ba)",
+                line2: "Primitivo",
+                price: "60.00€"
+            }, {
                 title: "IL FALCONE CASTEL DEL MONTE DOC",
                 line1: "Az. Vinicola Rivera Andria (BA)",
                 line2: "Nero di Troia 70% Montepulciano 30% - 13,5% vol.",
-                price: "25.00€"
+                price: "30.00€"
             }, {
                 title: "PUER APULIAE CASTEL del MONTE DOC",
                 line1: "Az. Vinicola Rivera Andria (BA)",
@@ -247,7 +282,7 @@ const wines = [
                 title: "TRENTANGELI DOC",
                 line1: "Castel del Monte - Az. Agr. Tormaresca",
                 line2: "Aglianico - 14% vol.",
-                price: "20.00€"
+                price: "25.00€"
             }, {
                 title: "BOCCA DI LUPO CASTEL del MONTE DOC",
                 line1: "Az. Agr. Tormaresca Minervino Murge (BA)",
@@ -300,6 +335,11 @@ const wines = [
                 line2: "Merlot - 13% vol",
                 price: "50.00€"
             }, {
+                title: "CONT’ UGO - Magnum",
+                line1: "Marchesi Antinori",
+                line2: "Merlot - 13% vol",
+                price: "100.00€"
+            }, {
                 title: "GUADO al TASSO",
                 line1: "Marchesi Antinori",
                 line2: "Cabernet Sauvignon, Merlot, Syrah - 13.5% vol",
@@ -320,7 +360,7 @@ const wines = [
             }, {
                 title: "BADIA A PASSIGNANO CHIANTI RIS. DOCG",
                 line1: "Marchesi Antinori San Casciano (FI)",
-                price: "45.00€"
+                price: "50.00€"
             }, {
                 title: "BADIA A PASSIGNANO CHIANTI RIS. DOCG - Annate storiche",
                 line1: "Marchesi Antinori San Casciano (FI)",
@@ -337,7 +377,7 @@ const wines = [
                 title: "PIAN delle VIGNE BRUNELLO di MONTALCINO DOCG",
                 line1: "Marchesi Antinori Montalcino (SI)",
                 line2: "14% vol",
-                price: "70.00€"
+                price: "80.00€"
             }
         ]
     }, {
@@ -410,7 +450,7 @@ const wines = [
                 title: "EGLY OURIET ROUGE",
                 line1: "Ambonnay Rouge - Cuvee des grand cotes",
                 line2: "Grand Cru - Pinot Noire 100% - 12.5% vol",
-                price: "200.00€"
+                price: "250.00€"
             }
         ]
     }, {
@@ -429,11 +469,11 @@ const wines = [
                 title: "GRANDE SENDRÈE",
                 price: "95.00€"
             }, {
-                title: "FRANCK PASCAL QUINTESSENCE 2005",
-                price: "120,00€"
+                title: "MOUSSE L’OR D’EUGENE B.N.",
+                price: "50,00€"
             }, {
-                title: "MONMARTHE PREMIER CRU BRUT",
-                price: "40,00€"
+                title: "EGLY-OURIET Les Promices",
+                price: "70,00€"
             }, {
                 title: "EGLY-OURIET Grand Cru Tradition",
                 price: "100.00€"
@@ -442,16 +482,16 @@ const wines = [
                 price: "100.00€"
             }, {
                 title: "EGLY-OURIET Les Crayeres B.N.",
-                price: "200.00€"
+                price: "230.00€"
             }, {
                 title: "EGLY-OURIET Rosé",
                 price: "150.00€"
             }, {
                 title: "J. PREVOST La Closerie Les Beguines B.N.",
-                price: "100.00€"
+                price: "120.00€"
             }, {
                 title: "J. PREVOST La Closerie Fac-Simile Rosé",
-                price: "150.00€"
+                price: "170.00€"
             }, {
                 title: "J. SELOSSE B.B. Grand Cru Initial",
                 price: "180.00€"
@@ -463,16 +503,25 @@ const wines = [
                 price: "400.00€"
             }, {
                 title: "PERRIER-JOUET Grand Brut",
-                price: "60.00€"
-            }, {
-                title: "PERRIER-JOUET Blason Rosé",
                 price: "80.00€"
             }, {
+                title: "PERRIER-JOUET Blason Rosé",
+                price: "100.00€"
+            }, {
                 title: "PERRIER-JOUET Belle Epoque 2006",
-                price: "160.00€"
+                price: "180.00€"
             }, {
                 title: "ALEXSANDRA Mill. 2004 Rosè",
                 price: "280.00€"
+            }, {
+                title: "LOUIS ROEDERER Brut Premiere",
+                price: "65.00€"
+            }, {
+                title: "LOUIS ROEDERER Rosé Millesimato",
+                price: "80.00€"
+            }, {
+                title: "LOUIS ROEDERER Cristal Brut 2012",
+                price: "220.00€"
             }
         ]
     }, {
@@ -559,12 +608,16 @@ const wines = [
                 price: "65.00€"
             }, {
                 title: "FERRARI TRENTO DOC",
-                line1: "Riserva Lunelli 2008",
+                line1: "Riserva Lunelli",
                 price: "65.00€"
             }, {
                 title: "FERRARI TRENTO DOC",
-                line1: "Giulio Ferrari 2005",
+                line1: "Giulio Ferrari",
                 price: "100.00€"
+            }, {
+                title: "FERRARI TRENTO DOC",
+                line1: "Giulio Ferrari Rosé",
+                price: "180.00€"
             }, {
                 title: "CANTINA DELLA VOLTA",
                 line1: "Mattaglio Brut",
@@ -606,6 +659,10 @@ const wines = [
                 title: "PASSITO di PANTELLERIA Ben Rye’",
                 line1: "Donnafugata. 14.5% vol. 0,375L",
                 price: "45.00€"
+            }, {
+                title: "IL RECIOTO della VALPOLICELLA 2015",
+                line1: "Az.Agr. Sant’Alda Mezzane (Vr) 14.5% vol. 0,375L",
+                price: "30.00€"
             }
         ]
     }
